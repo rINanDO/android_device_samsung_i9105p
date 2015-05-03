@@ -1,6 +1,9 @@
 # Include common makefile
 $(call inherit-product, device/samsung/galaxys2plus-common/common.mk)
 
+# Overlay
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
 # Init scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.capri_ss_s2vep.rc:root/init.capri_ss_s2vep.rc \
