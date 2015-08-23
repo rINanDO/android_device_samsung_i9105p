@@ -1,34 +1,22 @@
-# Include common makefile
-$(call inherit-product, device/samsung/galaxys2plus-common/common.mk)
+# Specify phone tech before including common
+$(call inherit-product, vendor/aicp/configs/gsm.mk)
 
-# Init scripts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ramdisk/init.capri_ss_s2vep.rc:root/init.capri_ss_s2vep.rc \
-    $(LOCAL_PATH)/ramdisk/init.recovery.capri_ss_s2vep.rc:root/init.recovery.capri_ss_s2vep.rc \
-    $(LOCAL_PATH)/ramdisk/ueventd.capri_ss_s2vep.rc:root/ueventd.capri_ss_s2vep.rc \
-    $(LOCAL_PATH)/ramdisk/fstab.capri_ss_s2vep:root/fstab.capri_ss_s2vep
+# Inherit some common AICP stuff
+$(call inherit-product, vendor/aicp/configs/common.mk)
 
-# NFC packages
-PRODUCT_PACKAGES += \
-    libnfc-nci \
-    libnfc_nci_jni \
-    nfc_nci.bcm2079x.capri \
-    NfcNci \
-    Tag \
-    com.android.nfc_extras
+# Enhanced NFC
+$(call inherit-product, vendor/aicp/configs/nfc_enhanced.mk)
 
-# NFCEE access control
-NFCEE_ACCESS_PATH := $(LOCAL_PATH)/nfc/nfcee_access.xml
+# Inherit device configuration
+$(call inherit-product, device/samsung/i9105p/full_i9105p.mk)
 
-# NFC firmware
-PRODUCT_COPY_FILES += \
-    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml \
-    $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    $(LOCAL_PATH)/nfc/bcm2079xB4_firmware_20793.ncd:system/vendor/firmware/bcm2079xB4_firmware_20793.ncd \
-    $(LOCAL_PATH)/nfc/bcm2079xB4_pre_firmware_20793.ncd:system/vendor/firmware/bcm2079xB4_pre_firmware_20793.ncd
+# Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := i9105p
+PRODUCT_NAME := aicp_i9105p
 
-# NFC permissions
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
+# Set build fingerprint / ID / Prduct Name ect.
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=s2vepxx \
+    TARGET_DEVICE=s2vep \
+    BUILD_FINGERPRINT="samsung/s2vepxx/s2vep:4.2.2/JDQ39/I9105PXXUBNG1:user/release-keys" \
+    PRIVATE_BUILD_DESC="s2vepxx-user 4.2.2 JDQ39 I9105PXXUBNG1 release-keys"
