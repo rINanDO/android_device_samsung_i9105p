@@ -5,7 +5,7 @@ $(call inherit-product, device/samsung/galaxys2plus-common/common.mk)
 PRODUCT_PACKAGES += \
     libnfc-nci \
     libnfc_nci_jni \
-    nfc_nci.bcm2079x.capri \
+    nfc_nci.bcm2079x.default \
     NfcNci \
     Tag \
     com.android.nfc_extras
