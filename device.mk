@@ -1,13 +1,6 @@
 # Include common makefile
 $(call inherit-product, device/samsung/galaxys2plus-common/common.mk)
 
-# Init scripts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ramdisk/init.capri_ss_s2vep.rc:root/init.capri_ss_s2vep.rc \
-    $(LOCAL_PATH)/ramdisk/init.recovery.capri_ss_s2vep.rc:root/init.recovery.capri_ss_s2vep.rc \
-    $(LOCAL_PATH)/ramdisk/ueventd.capri_ss_s2vep.rc:root/ueventd.capri_ss_s2vep.rc \
-    $(LOCAL_PATH)/ramdisk/fstab.capri_ss_s2vep:root/fstab.capri_ss_s2vep
-
 # NFC packages
 PRODUCT_PACKAGES += \
     libnfc-nci \
